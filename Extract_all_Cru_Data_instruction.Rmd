@@ -12,10 +12,8 @@ library(ncdf4)
 ```
 
 
-## TEMPERATURE EXTRACTION 1901-2014
-
-
-# Step 1: Creating the get_cru function
+# TEMPERATURE EXTRACTION 1901-2014
+## Step 1: Creating the get_cru function
 ```{r}
 get_cru <- function(lat, lon, variable, folder){
   CRU <- file.path(folder, sprintf('cru_ts3.23.1901.2014.tmp.dat.nc', variable))
@@ -38,7 +36,7 @@ get_cru <- function(lat, lon, variable, folder){
 }
 ```
 
-## setting which lat/long values which data will be extracted to 
+# setting which lat/long values which data will be extracted to 
 ```{r}
 setwd("C:\\Users\\adminuser\\Desktop\\EVERYTHING THOMAS\\OMNR Alagae project\\test cloud")
 data <- read.csv("algal.csv", header=TRUE)
@@ -52,7 +50,7 @@ m[104,1]
 ```
 
 
-## Temperature value extractions
+# Temperature value extractions
 ```{r}
 x=matrix(nrow = length(m[,1]), ncol = 1368)
 x[1,] <- t(get_cru(m[1,1],m[1,2], variable = 'tmp', folder = 'C:\\Users\\adminuser\\Desktop\\EVERYTHING THOMAS\\OMNR Alagae project\\test cloud'))[2,]
@@ -64,10 +62,10 @@ for (i in 1:length(m[,1]))
 }
 y
 ```
-## Create your CSV
+# Create your CSV
 ```{r}
 write.csv(y, file = "cru_temp.csv",row.names=FALSE, na="")
 ```
 
 
-# Use the same method to extract precipitation and cloud cover data, changing names of files where appropriate
+## Use the same method to extract precipitation and cloud cover data, changing names of files where appropriate
